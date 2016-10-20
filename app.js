@@ -16,7 +16,14 @@ bot.add('/', new builder.SimpleDialog( function(session){
 // Setup Restify Server
 var server = restify.createServer();
 server.post('api/messages', bot.verifyBotFramework(), bot.listen());
+
+server.get('/', restify.serveStatic({
+ directory: __dirname,
+ default: '/index.html'
+}));
+
 server.listen(process.env.PORT || 3000, function() 
 {
    console.log('%s listening to %s', server.name, server.url); 
 });
+
