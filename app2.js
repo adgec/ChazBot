@@ -1,13 +1,13 @@
-// Add your requirements
+
+// Add your requirements
 var restify = require('restify'); 
-var builder = require('botbuilder'); 
+var builder = require('botbuilder');
 
-//var appId = process.env.MY_APP_ID || "Missing appId";
-//var appSecret = process.env.MY_APP_SECRET || "Missing app secret";
+var appId = process.env.MY_APP_ID || "Missing appId";
+var appSecret = process.env.MY_APP_SECRET || "Missing app secret";
 
-// Setup Restify Server
+
 var server = restify.createServer();
-
 server.get('/', restify.serveStatic({
  directory: __dirname,
  default: '/index.html'
@@ -26,5 +26,7 @@ server.post('/api/messages', connector.listen());
 
 // Create bot dialogs
 bot.dialog('/', function (session) {
-    session.send("Hello World");
+    session.send("Hello World Again");
 });
+
+
