@@ -1,0 +1,28 @@
+{
+  "name": "chazbot",
+  "version": "1.0.0",
+  "description": "\"Building a ChazBot\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adgec/ChazBot.git"
+  },
+  "keywords": [
+    "chazbot",
+    "bot",
+    "skype"
+  ],
+  "author": "James Gifford",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adgec/ChazBot/issues"
+  },
+  "homepage": "https://github.com/adgec/ChazBot#readme",
+  "dependencies": {
+    "botbuilder": "^3.3.3",
+    "restify": "^4.1.1"
+  }
+}
