@@ -1,4 +1,3 @@
-// Add your requirements
 var restify = require('restify'); 
 var builder = require('botbuilder'); 
 
@@ -24,7 +23,37 @@ var connector = new builder.ChatConnector
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-// Create bot dialogs
-bot.dialog('/', function (session) {
-    session.send("Rome is in Romania");
-});
+
+/*CONSOLE
+var builder = require('botbuilder');
+var connector = new builder.ConsoleConnector().listen(); //connect to console for chat
+var bot = new builder.UniversalBot(connector);
+*/
+//Initial root dialog
+bot.dialog('/', [
+    function (session, args, next) {
+        if (!session.userData.name) {
+            session.beginDialog('/profile');
+        } else {
+            next();
+        }
+    },
+    function (session, results) {
+        session.send('%s, Rome is in Romania', session.userData.name);
+    }
+]);
+
+bot.dialog('/profile', [
+    function (session) {
+        builder.Prompts.text(session, 'Hi! What is your name?');
+    },
+    function (session, results) {
+        session.userData.name = results.response;
+        session.send('Hello %s! That is a great name!', session.userData.name);
+        builder.Prompts.text(session, 'How can I help?')
+        //session.endDialog();
+    },
+    function (session,results){
+        session.endDialog();
+    }
+]);
